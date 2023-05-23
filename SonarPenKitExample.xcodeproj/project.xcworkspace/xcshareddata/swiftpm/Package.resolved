@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "sonarpenkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SonarPen/SonarPenKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8e0fd94b64a404bd3039c3efd5736c0d55c5e335"
+      }
+    }
+  ],
+  "version" : 2
+}
