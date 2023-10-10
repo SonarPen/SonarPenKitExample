@@ -22,12 +22,17 @@
 
 import UIKit
 
-class CanvasViewController: UIViewController {
+class CanvasViewController: UIViewController, UIPencilInteractionDelegate {
     @IBOutlet var canvasView: CanvasView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.canvasView.clearCanvas(animated: false)
+        
+        let interaction = UIPencilInteraction()
+        interaction.delegate = self
+        canvasView.addInteraction(interaction)
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,4 +44,9 @@ class CanvasViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         self.canvasView.clearCanvas(animated: true)
     }
+    
+    func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
+        self.canvasView.toggleEraser()
+    }
+
 }

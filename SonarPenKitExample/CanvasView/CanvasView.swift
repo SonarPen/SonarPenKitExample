@@ -37,6 +37,7 @@ class CanvasView: UIImageView {
 
     private var drawColor: UIColor = UIColor.red
     private var pencilTexture: UIColor = UIColor(patternImage: UIImage(named: "PencilTexture")!)
+    private var forceEraser: Bool = false
 
     private var eraserColor: UIColor {
         return backgroundColor ?? UIColor.white
@@ -94,7 +95,7 @@ class CanvasView: UIImageView {
         let location = touch.location(in: self)
 
         var lineWidth: CGFloat
-        if touch.type == .stylus {
+        if touch.type == .pencil && !forceEraser {
             // Calculate line width for drawing stroke
             if touch.altitudeAngle < self.tiltThreshold {
                 lineWidth = self.lineWidthForShading(context: context, touch: touch)
@@ -105,7 +106,12 @@ class CanvasView: UIImageView {
             self.pencilTexture.setStroke()
         } else {
             // Erase with finger
-            lineWidth = touch.majorRadius / 2
+            if touch.type == .pencil {
+                lineWidth = 32
+            }
+            else {
+                lineWidth = touch.majorRadius / 2
+            }
             self.eraserColor.setStroke()
         }
 
@@ -203,5 +209,9 @@ class CanvasView: UIImageView {
             self.image = nil
             self.drawingImage = nil
         }
+    }
+    
+    func toggleEraser() {
+        self.forceEraser = !self.forceEraser
     }
 }

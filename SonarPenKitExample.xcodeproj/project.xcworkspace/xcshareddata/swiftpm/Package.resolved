@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SonarPen/SonarPenKit",
       "state" : {
-        "revision" : "dfa056a3b19df3f806d2e0a1a06173ec0df6f160",
-        "version" : "0.5.1"
+        "revision" : "4b426642f71770abf144fd055f2c491f8ecffd1c",
+        "version" : "0.7.0"
       }
     }
   ],
