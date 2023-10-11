@@ -211,7 +211,14 @@ class CanvasView: UIImageView {
         }
     }
     
-    func toggleEraser() {
+    func toggleEraser() -> Bool {
         self.forceEraser = !self.forceEraser
+        return forceEraser
     }
+    
+    func setEraser(_ eraser: Bool) -> Bool {
+        self.forceEraser = eraser
+        return eraser
+    }
+    
 }

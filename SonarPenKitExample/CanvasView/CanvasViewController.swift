@@ -24,6 +24,7 @@ import UIKit
 
 class CanvasViewController: UIViewController, UIPencilInteractionDelegate {
     @IBOutlet var canvasView: CanvasView!
+    @IBOutlet var modeControl: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +41,18 @@ class CanvasViewController: UIViewController, UIPencilInteractionDelegate {
         self.restoreDebugMessages()
     }
 
+    @IBAction func onModeControlChanged(_ control: UISegmentedControl) {
+        _ = self.canvasView.setEraser(control.selectedSegmentIndex == 0 ? false : true)
+    }
+    
     // Shake to clear screen
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         self.canvasView.clearCanvas(animated: true)
     }
     
     func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
-        self.canvasView.toggleEraser()
+        let newValue = self.canvasView.toggleEraser()
+        modeControl.selectedSegmentIndex = newValue ? 1 : 0
     }
 
 }
