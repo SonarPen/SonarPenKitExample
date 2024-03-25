@@ -10,6 +10,8 @@
 		494E6F922A1BC22C00674F03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494E6F902A1BC22C00674F03 /* Main.storyboard */; };
 		494E6F942A1BC22D00674F03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 494E6F932A1BC22D00674F03 /* Assets.xcassets */; };
 		494E6F972A1BC22D00674F03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494E6F952A1BC22D00674F03 /* LaunchScreen.storyboard */; };
+		495827882BB10EEA00D0AAA9 /* UniversalCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495827852BB10EEA00D0AAA9 /* UniversalCanvasView.swift */; };
+		495827892BB10EEA00D0AAA9 /* UniversalCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495827862BB10EEA00D0AAA9 /* UniversalCanvasViewController.swift */; };
 		49CE993D2A1C988E00430E9D /* SonarPenKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49CE993C2A1C988E00430E9D /* SonarPenKit */; };
 		49CE994D2A1C99F000430E9D /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE99412A1C99F000430E9D /* CanvasView.swift */; };
 		49CE994E2A1C99F000430E9D /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE99422A1C99F000430E9D /* CanvasViewController.swift */; };
@@ -31,6 +33,8 @@
 		494E6F932A1BC22D00674F03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		494E6F962A1BC22D00674F03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		494E6F982A1BC22D00674F03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495827852BB10EEA00D0AAA9 /* UniversalCanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalCanvasView.swift; sourceTree = "<group>"; };
+		495827862BB10EEA00D0AAA9 /* UniversalCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalCanvasViewController.swift; sourceTree = "<group>"; };
 		49CE99412A1C99F000430E9D /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		49CE99422A1C99F000430E9D /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		49CE99442A1C99F000430E9D /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 		494E6F892A1BC22C00674F03 /* SonarPenKitExample */ = {
 			isa = PBXGroup;
 			children = (
+				495827872BB10EEA00D0AAA9 /* UniversalCanvasView */,
 				49CE99402A1C99F000430E9D /* CanvasView */,
 				49CE99432A1C99F000430E9D /* PencilKitDraw */,
 				49CE99582A1C9F5000430E9D /* AppDelegate.swift */,
@@ -88,6 +93,15 @@
 				494E6F932A1BC22D00674F03 /* Assets.xcassets */,
 			);
 			path = SonarPenKitExample;
+			sourceTree = "<group>";
+		};
+		495827872BB10EEA00D0AAA9 /* UniversalCanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				495827852BB10EEA00D0AAA9 /* UniversalCanvasView.swift */,
+				495827862BB10EEA00D0AAA9 /* UniversalCanvasViewController.swift */,
+			);
+			path = UniversalCanvasView;
 			sourceTree = "<group>";
 		};
 		49CE99402A1C99F000430E9D /* CanvasView */ = {
@@ -190,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495827892BB10EEA00D0AAA9 /* UniversalCanvasViewController.swift in Sources */,
 				49CE99592A1C9F5000430E9D /* AppDelegate.swift in Sources */,
 				49CE994E2A1C99F000430E9D /* CanvasViewController.swift in Sources */,
 				49CE99532A1C99F000430E9D /* PencilKitDrawNavigationController.swift in Sources */,
@@ -198,6 +213,7 @@
 				49CE994F2A1C99F000430E9D /* DrawingViewController.swift in Sources */,
 				49CE99552A1C99F000430E9D /* DebugMessageViewController.swift in Sources */,
 				49CE99562A1C99F000430E9D /* UIMenuTableViewController.swift in Sources */,
+				495827882BB10EEA00D0AAA9 /* UniversalCanvasView.swift in Sources */,
 				49CE99542A1C99F000430E9D /* ThumbnailCollectionViewCell.swift in Sources */,
 				49CE994D2A1C99F000430E9D /* CanvasView.swift in Sources */,
 				49CE99522A1C99F000430E9D /* ThumbnailCollectionViewController.swift in Sources */,

@@ -23,10 +23,11 @@
 // https://github.com/ralfebert/Scribble/tree/master/Scribble
 
 import UIKit
+import SonarPenKit
 
 private let π = CGFloat.pi
 
-class CanvasView: UIImageView {
+class UniversalCanvasView: UIImageView {
     // Parameters
     private let defaultLineWidth: CGFloat = 6
     private let forceSensitivity: CGFloat = 4.0
@@ -38,12 +39,20 @@ class CanvasView: UIImageView {
     private var drawColor: UIColor = UIColor.red
     private var pencilTexture: UIColor = UIColor(patternImage: UIImage(named: "PencilTexture")!)
     private var forceEraser: Bool = false
+    private let sonarPenTouchHandler = WTSonarPenTouchesHandler()
 
     private var eraserColor: UIColor {
         return backgroundColor ?? UIColor.white
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if SonarPen.penVersion == .version1 {
+            _ = sonarPenTouchHandler.handleTouches(event: event, view: self)
+        }
+    }
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+
         guard let touch = touches.first else { return }
 
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
@@ -52,19 +61,33 @@ class CanvasView: UIImageView {
         // Draw previous image into context
         drawingImage?.draw(in: bounds)
 
-        // 1
         var touches = [UITouch]()
 
-        // Coalesce Touches
-        // 2
-        if let coalescedTouches = event?.coalescedTouches(for: touch) {
-            touches = coalescedTouches
-        } else {
-            touches.append(touch)
+        if SonarPen.penVersion == .version1 {
+            // sonarpen v1 handling
+            let isPenDown = sonarPenTouchHandler.handleTouches(event: event, view: self)
+            if isPenDown, let penTouch = sonarPenTouchHandler.penTouch {
+                touches.append(penTouch)
+            }
         }
+        else {
+            // normal apple pencil handling
+            
+            // 1
 
+            // Coalesce Touches
+            // 2
+            if let coalescedTouches = event?.coalescedTouches(for: touch) {
+                touches = coalescedTouches
+            } else {
+                touches.append(touch)
+            }
+
+        }
+        
         // 4
         for touch in touches {
+//            print("force: \(touch.force), maxForce: \(touch.maximumPossibleForce), radius: \(touch.majorRadius), t: \(touch.majorRadiusTolerance), a1: \(touch.altitudeAngle), a2: \(touch.azimuthAngle(in: self))")
             self.drawStroke(context: context, touch: touch)
         }
 
@@ -80,13 +103,20 @@ class CanvasView: UIImageView {
         // Update image
         image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if SonarPen.penVersion == .version1 {
+            _ = sonarPenTouchHandler.handleTouches(event: event, view: self)
+        }
         image = self.drawingImage
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if SonarPen.penVersion == .version1 {
+            _ = sonarPenTouchHandler.handleTouches(event: event, view: self)
+        }
         image = self.drawingImage
     }
 
@@ -178,6 +208,7 @@ class CanvasView: UIImageView {
         let minForce: CGFloat = 0.0
         let maxForce: CGFloat = 5
 
+        print("line width with force: \(touch.force)")
         // Normalize between 0 and 1
         let normalizedAlpha = (touch.force - minForce) / (maxForce - minForce)
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="126-zN-ptB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="126-zN-ptB">
     <device id="ipad10_5" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -235,7 +235,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="126-zN-ptB" customClass="PencilKitDrawNavigationController" customModule="SonarPenKitExample" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KJd-yv-eNi">
-                        <rect key="frame" x="0.0" y="20" width="834" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="834" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -283,11 +283,12 @@
                     <connections>
                         <segue destination="wIs-m9-Gso" kind="show" identifier="pencilKitDrawSegue" id="6Zd-cU-pVf"/>
                         <segue destination="1ab-Zt-gce" kind="show" identifier="canvasSegue" id="MVQ-Qp-HlU"/>
+                        <segue destination="UA8-rr-lYw" kind="show" identifier="universalCanvasSegue" id="caF-WF-wDn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmi-LZ-8oV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-506" y="208"/>
+            <point key="canvasLocation" x="-489" y="344"/>
         </scene>
         <!--Debug Message View Controller-->
         <scene sceneID="TDX-Cu-EsI">
@@ -476,6 +477,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHg-b6-UwQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="472" y="1253"/>
+        </scene>
+        <!--Universal Canvas View Controller-->
+        <scene sceneID="aoy-v2-FLZ">
+            <objects>
+                <viewController id="UA8-rr-lYw" customClass="UniversalCanvasViewController" customModule="SonarPenKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hV8-8O-PEb">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5e-Fn-jek" customClass="UniversalCanvasView" customModule="SonarPenKitDemo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="70" width="834" height="1042"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PzQ-cw-jpM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="M5e-Fn-jek" firstAttribute="leading" secondItem="PzQ-cw-jpM" secondAttribute="leading" id="DDi-sP-84w"/>
+                            <constraint firstItem="M5e-Fn-jek" firstAttribute="top" secondItem="PzQ-cw-jpM" secondAttribute="top" id="Oze-eD-VTb"/>
+                            <constraint firstItem="PzQ-cw-jpM" firstAttribute="trailing" secondItem="M5e-Fn-jek" secondAttribute="trailing" id="nrY-xV-Y6o"/>
+                            <constraint firstItem="PzQ-cw-jpM" firstAttribute="bottom" secondItem="M5e-Fn-jek" secondAttribute="bottom" id="xgi-Ny-qtM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="JOx-ln-IzX">
+                        <barButtonItem key="rightBarButtonItem" id="gQ8-Uy-bUD">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="vtE-WT-sNr">
+                                <rect key="frame" x="724" y="5.5" width="90" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="" image="scribble" catalog="system"/>
+                                    <segment title="" image="pencil.slash" catalog="system"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onModeControlChanged:" destination="UA8-rr-lYw" eventType="valueChanged" id="9Y5-Ss-I2j"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="canvasView" destination="M5e-Fn-jek" id="eEr-ci-qzS"/>
+                        <outlet property="modeControl" destination="vtE-WT-sNr" id="e3h-Zb-0di"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0HE-5E-gSe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-297" y="1185"/>
         </scene>
     </scenes>
     <resources>

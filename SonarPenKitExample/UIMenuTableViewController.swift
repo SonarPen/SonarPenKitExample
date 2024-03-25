@@ -40,7 +40,7 @@ class UIMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,6 +54,8 @@ class UIMenuTableViewController: UITableViewController {
             cell.textLabel?.text = "Pencil Kit Test"
         case 2:
             cell.textLabel?.text = "Canvas View Test"
+        case 3:
+            cell.textLabel?.text = "Canvas View Test (v1+v2)"
         default:
             fatalError()
         }
@@ -70,6 +72,8 @@ class UIMenuTableViewController: UITableViewController {
             self.performSegue(withIdentifier: "pencilKitDrawSegue", sender: nil)
         case 2:
             self.performSegue(withIdentifier: "canvasSegue", sender: nil)
+        case 3:
+            self.performSegue(withIdentifier: "universalCanvasSegue", sender: nil)
         default:
             fatalError()
         }

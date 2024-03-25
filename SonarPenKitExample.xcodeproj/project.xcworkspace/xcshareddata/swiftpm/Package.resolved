@@ -1,14 +1,15 @@
 {
+  "originHash" : "866a61aa5043a07cc02931c3cd17986d85325f809a2cdddde82d08f47ed1ebce",
   "pins" : [
     {
       "identity" : "sonarpenkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SonarPen/SonarPenKit",
       "state" : {
-        "revision" : "18f07383c9436137c219dad55b31ad052d60fd38",
-        "version" : "0.7.2"
+        "revision" : "830b9dc4810508262028c40aaf86df25e1ab77df",
+        "version" : "0.8.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
